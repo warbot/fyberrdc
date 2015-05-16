@@ -1,0 +1,17 @@
+<%= form_for(@fyber_offer) do |f| %>
+  <% if @fyber_offer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@fyber_offer.errors.count, "error") %> prohibited this fyber_offer from being saved:</h2>
+
+      <ul>
+      <% @fyber_offer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
