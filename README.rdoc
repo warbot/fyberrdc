@@ -4,3 +4,17 @@
   2.2.2
 
 Where to put rest call to fyber?..
+In a service FyberOffersApi
+
+So when a user opens a page, request goes to server.
+Request is processed by controller.
+Controller will call FyberOffersApi to do an api call to Fyber services.
+
+Huh? Hashkey needs to be calculated on each request.
+I've been given a static api key. Have I been tricked?..
+FyberOfferHashkey upcoming
+
+Turns up api key is used to generate hashkey
+
+
+
