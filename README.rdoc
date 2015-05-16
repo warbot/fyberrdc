@@ -16,5 +16,8 @@ FyberOfferHashkey upcoming
 
 Turns up api key is used to generate hashkey
 
+Checking the hash in the response to make sure that it is a real response
+FyberOfferApiValidator to be born
 
-
+FyberOfferHashkey and FyberOfferApiValidator have some similar
+algorythm flow. I don't think template method is needed though

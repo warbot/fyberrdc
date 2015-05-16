@@ -1,22 +1,25 @@
 require 'rest-client'
 
 class FyberOffersApi
-  attr_reader :client
+  attr_reader :client, :response_token
 
   def initialize
     @client = RestClient
     @tokenizer = FyberOffersApiToken
-  end
-
-  def call
-    host = 'http://fyber.com'
-    options = {}
-
-    client.get(host, options)
+    @validator = FyberOffersApiValidator
+    @response = {headers: {}}
   end
 
   def offers
-    client.get(url, params: params)
+    @response = client.get(url, params: params)
+  end
+
+  def response_valid?(response)
+    @validator.new(response).valid?(response_token)
+  end
+
+  def response_token
+    @response.headers[:x_sponsorpay_response_signature]
   end
 
   private
@@ -30,8 +33,7 @@ class FyberOffersApi
   end
 
   def url
-    # uri.concat(offer_path)
-    'http://api.sponsorpay.com/feed/v1/offers.json'
+    uri.concat(offer_path)
   end
 
   def request_current_time

@@ -8,7 +8,7 @@ describe FyberOffersApi do
   end
 
   describe '#offers' do
-    xit 'is ok' do
+    it 'is ok' do
       response = caller.offers
 
       expect(response.code).to be_ok
@@ -18,6 +18,20 @@ describe FyberOffersApi do
       response = caller.offers
 
       expect(response).to include('offers')
+    end
+
+    it 'includes a validation token in response headers' do
+      response = caller.offers
+
+      expect(response.headers).to include(:x_sponsorpay_response_signature)
+    end
+  end
+
+  describe '#response_valid?' do
+    it 'is' do
+      response = caller.offers
+
+      expect(caller.response_valid?(response)).to be_truthy
     end
   end
 

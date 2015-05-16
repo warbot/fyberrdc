@@ -10,13 +10,7 @@
   </thead>
 
   <tbody>
-    <% @fyber_offers.each do |fyber_offer| %>
-      <tr>
-        <td><%= link_to 'Show', fyber_offer %></td>
-        <td><%= link_to 'Edit', edit_fyber_offer_path(fyber_offer) %></td>
-        <td><%= link_to 'Destroy', fyber_offer, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <%= @fyber_offers %>
   </tbody>
 </table>
 

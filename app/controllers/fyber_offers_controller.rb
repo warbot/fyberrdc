@@ -4,7 +4,7 @@ class FyberOffersController < ApplicationController
   # GET /fyber_offers
   # GET /fyber_offers.json
   def index
-    @fyber_offers = FyberOffer.all
+    @fyber_offers = FyberOffersApi.new.offers
   end
 
   # GET /fyber_offers/1
