@@ -2,18 +2,26 @@
 
 <h1>Listing Fyber Offers</h1>
 
-<table>
-  <thead>
+<% if @fyber_offers.present? %>
+  <table>
+    <thead>
     <tr>
-      <th colspan="3"></th>
+      <th></th>
+      <th><%= t('.title') %></th>
+      <th><%= t('.payout') %></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
-    <%= @fyber_offers %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Fyber offer', new_fyber_offer_path %>
+    <tbody>
+    <% @fyber_offers.each do |fyber_offer| %>
+      <tr>
+        <td><%= image_tag fyber_offer['thumbnail']['lowres'] %></td>
+        <td><%= fyber_offer['title'] %></td>
+        <td><%= fyber_offer['payout'] %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <%= t('.no_offers')  %>
+<% end %>

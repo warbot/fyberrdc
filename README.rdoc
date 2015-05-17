@@ -14,10 +14,20 @@ Huh? Hashkey needs to be calculated on each request.
 I've been given a static api key. Have I been tricked?..
 FyberOfferHashkey upcoming
 
-Turns up api key is used to generate hashkey
+Turns out api key is used to generate hashkey for outgoing request.
 
 Checking the hash in the response to make sure that it is a real response
 FyberOfferApiValidator to be born
 
 FyberOfferHashkey and FyberOfferApiValidator have some similar
 algorythm flow. I don't think template method is needed though
+
+OK, now to render some views. Done.
+
+Alright, let's make user inputs for:
+ - uid
+ - pub0
+ - page
+
+Hmm... should I do a real pagination here or just a simple
+integer input for `page' option?

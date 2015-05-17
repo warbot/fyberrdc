@@ -1,3 +1,27 @@
 // Place all the styles related to the fyber_offers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 25;
+
+  h1, h2 {
+    color: rgb(81, 84, 91);
+    display: block;
+    font-weight: 500;
+    height: 43px;
+    line-height: 43px;
+
+  }
+
+  h1 {
+    font-size: 34px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+}

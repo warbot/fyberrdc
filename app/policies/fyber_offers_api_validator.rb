@@ -15,11 +15,11 @@ class FyberOffersApiValidator
   end
 
   def response_hash(response)
-    response = concat_response_with_api_key(response)
+    response = concat_with_api_key(response)
     @hash = sha1(response)
   end
 
-  def concat_response_with_api_key(response)
+  def concat_with_api_key(response)
     [response, MY_API_KEY].join('')
   end
 

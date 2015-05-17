@@ -8,24 +8,32 @@ describe FyberOffersApiToken do
     expect(tokenizer.params).to eq(a: 1, b: 2 , c:3)
   end
 
-  it 'concatenates all params with &' do
-    params = {b: 2, c: 3, a: 1}
-    tokenizer = FyberOffersApiToken.new(params)
+  describe '#stringify_params' do
+    it 'transforms params hash into url like params string' do
+      params = {b: 2, c: 3, a: 1}
+      tokenizer = FyberOffersApiToken.new(params)
 
-    expect(tokenizer.stringify_params).to eq 'a=1&b=2&c=3'
+      expect(tokenizer.stringify_params).to eq 'a=1&b=2&c=3'
+    end
   end
 
-  it 'concatenates params with api key' do
-    tokenizer = FyberOffersApiToken.new
-    params = 'a=1'
+  describe '#concat_with_api_key' do
+    it 'concatenates params with api key' do
+      stub_const('FyberOffersApiToken::MY_API_KEY', 'api_key')
+      tokenizer = FyberOffersApiToken.new
+      params = 'a=1'
 
-    expect(tokenizer.concat_with_api_key(params)).to eq 'a=1&b07a12df7d52e6c118e5d47d3f9e60135b109a1f'
+      expect(tokenizer.concat_with_api_key(params)).to eq 'a=1&api_key'
+    end
   end
 
-  it 'generates SHA1' do
-    params = {b: 2, c: 3, a: 1}
-    tokenizer = FyberOffersApiToken.new(params)
+  describe '#token' do
+    it 'is a sha1 digest' do
+      params = {b: 2, c: 3, a: 1}
+      tokenizer = FyberOffersApiToken.new(params)
+      allow(tokenizer).to receive(:sha1).and_return 'sha1'
 
-    expect(tokenizer.token).to eq 'e4109ba2f8c759fa65fc244dde533d7cec4433e6'
+      expect(tokenizer.token).to eq 'sha1'
+    end
   end
 end

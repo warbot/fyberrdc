@@ -1,13 +1,13 @@
 require 'rest-client'
 
 class FyberOffersApi
-  attr_reader :client, :response_token
+  attr_reader :client, :validator
 
   def initialize
     @client = RestClient
     @tokenizer = FyberOffersApiToken
     @validator = FyberOffersApiValidator
-    @response = {headers: {}}
+    @response = OpenStruct.new({headers: {}})
   end
 
   def offers
@@ -15,7 +15,7 @@ class FyberOffersApi
   end
 
   def response_valid?(response)
-    @validator.new(response).valid?(response_token)
+    validator.new(response).valid?(response_token)
   end
 
   def response_token
