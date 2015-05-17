@@ -1,16 +1,17 @@
 require 'rest-client'
 
 class FyberOffersApi
-  attr_reader :client, :validator
+  attr_reader :client, :validator, :user_params
 
-  def initialize
+  def initialize(user_params = {})
     @client = RestClient
     @tokenizer = FyberOffersApiToken
     @validator = FyberOffersApiValidator
     @response = OpenStruct.new({headers: {}})
+    @user_params = user_params
   end
 
-  def offers
+  def get
     @response = client.get(url, params: params)
   end
 
@@ -51,14 +52,6 @@ class FyberOffersApi
         timestamp: request_current_time,
         apple_idfa: '2E7CE4B3-F68A-44D9-A923-F4E48D92B31E',
         apple_idfa_tracking_enabled: false
-    }
-  end
-
-  def user_params
-    {
-        uid: 157,
-        pub0: 'campaign2',
-        page: 1
     }
   end
 
