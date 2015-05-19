@@ -1,32 +1,41 @@
-<%= form_for(:fyber_offers, url: root_path, method: :get) do |f| %>
+<%= form_for(:fyber_offers, url: root_path, method: :get,
+             html: {class: 'form-horizontal'}) do |f| %>
   <% if @fyber_offers.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@fyber_offers.errors.count, "error") %> prohibited this fyber_offer from being processed:</h2>
 
       <ul>
-      <% @fyber_offers.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% @fyber_offers.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :uid %>
-    <%= f.text_field :uid %>
+  <div class="form-group">
+    <%= f.label :uid, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :uid, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :pub0 %>
-    <%= f.text_field :pub0 %>
+  <div class="form-group">
+    <%= f.label :pub0, class: 'col-sm-2 control-label' %>
+    <div class="col-sm-10">
+      <%= f.text_field :pub0, class: 'form-control' %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :page %>
-    <%= f.text_field :page %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit I18n.t('fyber_offers.index.submit'), class: 'btn btn-primary' %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Let's look..." %>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= paginate(@fyber_offers, theme: 'twitter-bootstrap-3') if @fyber_offers.any? %>
+    </div>
   </div>
+
 <% end %>

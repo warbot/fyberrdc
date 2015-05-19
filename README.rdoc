@@ -30,4 +30,4 @@ Alright, let's make user inputs for:
  - page
 
 Hmm... should I do a real pagination here or just a simple
-integer input for `page' option?
+integer input for `page' option? I think so

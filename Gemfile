@@ -34,6 +34,11 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rest-client', '1.8.0'
 
+# paginator
+gem 'kaminari', '0.16.3'
+gem 'bootstrap-kaminari-views'
+gem 'twitter-bootstrap-rails'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

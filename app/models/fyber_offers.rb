@@ -1,7 +1,7 @@
 class FyberOffers
   include ActiveModel::Validations
 
-  delegate :present?, :blank?, :empty?, :each, :map, to: :offers
+  delegate :present?, :blank?, :empty?, :any?, :each, :map, to: :offers
 
   validates :uid, :pub0, presence: true
   validates :page, numericality: {greater_than_or_equal_to: 1}
@@ -26,11 +26,26 @@ class FyberOffers
   end
 
   def page
-    user_params[:page]
+    user_params[:page].to_i
   end
+  alias :current_page :page
 
   def offers
-    @fyber_offers['offers']
+    @fyber_offers['offers'] || []
+  end
+
+  def pages
+    @fyber_offers['pages']
+  end
+  alias :total_pages :pages
+
+  def items_on_page
+    @fyber_offers['count']
+  end
+  alias :limit_value :items_on_page
+
+  def count
+    limit_value * pages
   end
 
   private

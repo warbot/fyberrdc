@@ -1,28 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1>Listing Fyber Offers</h1>
-<%= render 'form' %>
+  <h1 class="text-center">Listing Fyber Offers</h1>
 
-<% if @fyber_offers.present? %>
-  <table>
-    <thead>
-    <tr>
-      <th></th>
-      <th><%= t('.title') %></th>
-      <th><%= t('.payout') %></th>
-    </tr>
-    </thead>
+  <%= render 'form' %>
 
-    <tbody>
-    <% @fyber_offers.each do |fyber_offer| %>
-      <tr>
-        <td><%= image_tag fyber_offer['thumbnail']['lowres'] %></td>
-        <td><%= fyber_offer['title'] %></td>
-        <td><%= fyber_offer['payout'] %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <%= t('.no_offers')  %>
-<% end %>
+  <% if @fyber_offers.present? %>
+    <div class="col-sm-offset-1 col-sm-10">
+      <table class="table table-striped" id="fyber_offers">
+        <thead>
+        <tr>
+          <th></th>
+          <th><%= t('.title') %></th>
+          <th><%= t('.payout') %></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <% @fyber_offers.each do |fyber_offer| %>
+          <tr>
+            <td><%= image_tag fyber_offer['thumbnail']['lowres'], class: 'img-thumbnail' %></td>
+            <td><%= fyber_offer['title'] %></td>
+            <td><%= fyber_offer['payout'] %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% elsif @fyber_offers.valid? %>
+    <%= t('.no_offers') %>
+  <% end %>
+</div>
