@@ -5,6 +5,7 @@ class FyberOffers
 
   validates :uid, :pub0, presence: true
   validates :page, numericality: {greater_than_or_equal_to: 1}
+  validate :no_response_errors
 
   def initialize(fyber_offers_api)
     @fyber_offers_api = fyber_offers_api
@@ -13,7 +14,6 @@ class FyberOffers
 
   def get
     @fyber_offers = parse(@fyber_offers_api.get)
-
     self
   end
 
@@ -48,13 +48,21 @@ class FyberOffers
     limit_value * pages
   end
 
-  private
-
-  def parse(serialized_offers)
-    JSON.parse(serialized_offers)
+  def response_errors
+    @fyber_offers_api.response_errors
   end
+
+  private
 
   def user_params
     @fyber_offers_api.user_params
+  end
+
+  def no_response_errors
+    response_errors.blank?
+  end
+
+  def parse(response)
+    JSON.parse(response)
   end
 end

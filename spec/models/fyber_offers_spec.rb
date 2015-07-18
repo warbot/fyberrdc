@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe FyberOffers do
   it 'gets the offer using fyber offers api' do
-    allow(fyber_offers_api).to receive(:get).and_return '{"offers":[1,2]}'
-
     FyberOffers.new(fyber_offers_api).get
 
     expect(fyber_offers_api).to have_received(:get)
@@ -42,7 +40,7 @@ describe FyberOffers do
   end
 
   def fyber_offers_api
-    json_offers = '{"offers":[1,2]}'
-    @fyber_offers_api ||= spy('fyber_offers_api', get: json_offers)
+    get_response = {offers: [1, 2]}.to_json
+    @fyber_offers_api ||= spy('fyber_offers_api', get: get_response)
   end
 end

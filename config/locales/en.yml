@@ -27,3 +27,7 @@ en:
       payout: Payout
       no_offers: "We are sorry, but there are no offers at the moment"
       submit: "Let's look..."
+  fyber_offers_api:
+      repsonse:
+        not_valid: "Response from API is not valid"
+

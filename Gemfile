@@ -50,4 +50,5 @@ group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'
   gem 'rspec-rails', '3.2.1'
+  gem 'simplecov', '0.10.0', require: false
 end

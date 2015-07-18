@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container center-block col-lg-18">
   <p id="notice"><%= notice %></p>
 
   <h1 class="text-center">Listing Fyber Offers</h1>
@@ -28,6 +28,6 @@
       </table>
     </div>
   <% elsif @fyber_offers.valid? %>
-    <%= t('.no_offers') %>
+    <div class="bg-info text-center"><%= t('.no_offers') %></div>
   <% end %>
 </div>

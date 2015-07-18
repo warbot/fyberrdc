@@ -1,18 +1,25 @@
 require 'rest-client'
 
 class FyberOffersApi
-  attr_reader :client, :validator, :user_params
+  attr_reader :client, :validator, :user_params, :response_errors, :response
 
   def initialize(user_params = {})
     @client = RestClient
     @tokenizer = FyberOffersApiToken
     @validator = FyberOffersApiValidator
     @response = OpenStruct.new({headers: {}})
+    @response_errors = []
     @user_params = user_params
   end
 
   def get
-    @response = client.get(url, params: params)
+    begin
+      @response = get_response
+      validate_response
+      @response
+    rescue => e
+      @response_errors << e.message
+    end
   end
 
   def response_valid?(response)
@@ -23,7 +30,21 @@ class FyberOffersApi
     @response.headers[:x_sponsorpay_response_signature]
   end
 
+  def response_errors
+    @response_errors.join(' ')
+  end
+
   private
+
+  def get_response
+    client.get(url, params: params)
+  end
+
+  def validate_response
+    unless response_valid?(response)
+      @response_errors << I18n.t('fyber_offers_api.repsonse.not_valid')
+    end
+  end
 
   def uri
     'http://api.sponsorpay.com'
@@ -66,5 +87,4 @@ class FyberOffersApi
   def hashkey
     @tokenizer.new(params_without_hashkey).token
   end
-
 end
