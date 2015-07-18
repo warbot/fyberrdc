@@ -32,7 +32,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rest-client', '1.8.0'
 
-gem 'pg', '0.18.2'
+# gem 'pg', '0.18.2'
 gem 'puma', '2.12.2'
 
 # paginator
