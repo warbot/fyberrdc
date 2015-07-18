@@ -54,7 +54,7 @@ describe FyberOffers do
       expect(fyber_offers.page).to eq 1
     end
 
-    it 'retuns 0 by default' do
+    it 'returns 0 by default' do
       get_response = {}.to_json
       fyber_offers_api = spy('fyber_offers_api', get: get_response)
       fyber_offers = FyberOffers.new(fyber_offers_api)
@@ -76,7 +76,7 @@ describe FyberOffers do
       expect(fyber_offers.pages).to eq 1
     end
 
-    it 'retuns 0 by default' do
+    it 'returns 0 by default' do
       get_response = {}.to_json
       fyber_offers_api = spy('fyber_offers_api', get: get_response)
       fyber_offers = FyberOffers.new(fyber_offers_api)
@@ -98,7 +98,7 @@ describe FyberOffers do
       expect(fyber_offers.items_on_page).to eq 20
     end
 
-    it 'retuns 0 by default' do
+    it 'returns 0 by default' do
       get_response = {}.to_json
       fyber_offers_api = spy('fyber_offers_api', get: get_response)
       fyber_offers = FyberOffers.new(fyber_offers_api)

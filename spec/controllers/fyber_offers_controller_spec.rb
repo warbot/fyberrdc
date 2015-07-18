@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe FyberOffersController do
   describe 'index' do
-    it 'renders fyber_offers' do
+    it 'renders fyber_offers template' do
       get :index
 
       expect(response).to render_template(:fyber_offers)
