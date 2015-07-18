@@ -39,12 +39,12 @@ class FyberOffers
   end
 
   def pages
-    @fyber_offers['pages']
+    @fyber_offers['pages'] || 0
   end
   alias :total_pages :pages
 
   def items_on_page
-    @fyber_offers['count']
+    @fyber_offers['count'] || 0
   end
   alias :limit_value :items_on_page
 
@@ -56,6 +56,14 @@ class FyberOffers
     @fyber_offers_api.response_errors
   end
 
+  def parse(response)
+    begin
+      JSON.parse(response)
+    rescue
+      {}
+    end
+  end
+
   private
 
   def user_params
@@ -64,9 +72,5 @@ class FyberOffers
 
   def no_response_errors?
     response_errors.blank?
-  end
-
-  def parse(response)
-    JSON.parse(response)
   end
 end
