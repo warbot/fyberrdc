@@ -10,8 +10,6 @@ class FyberOffersController < ApplicationController
     render layout: 'fyber_offers'
   end
 
-  private
-
   def fyber_offer_params
     user_params = params.permit(:page, fyber_offers: [:uid, :pub0])
     fyber_params = user_params.fetch(:fyber_offers, {})

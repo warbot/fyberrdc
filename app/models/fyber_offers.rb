@@ -5,7 +5,7 @@ class FyberOffers
 
   validates :uid, :pub0, presence: true
   validates :page, numericality: {greater_than_or_equal_to: 1}
-  validate :no_response_errors
+  validate :no_response_errors?
 
   def initialize(fyber_offers_api)
     @fyber_offers_api = fyber_offers_api
@@ -26,7 +26,11 @@ class FyberOffers
   end
 
   def page
-    user_params[:page].to_i
+    begin
+      user_params[:page].to_i
+    rescue
+      1
+    end
   end
   alias :current_page :page
 
@@ -58,7 +62,7 @@ class FyberOffers
     @fyber_offers_api.user_params
   end
 
-  def no_response_errors
+  def no_response_errors?
     response_errors.blank?
   end
 
