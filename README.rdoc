@@ -20,7 +20,7 @@ Checking the hash in the response to make sure that it is a real response
 FyberOfferApiValidator to be born
 
 FyberOfferHashkey and FyberOfferApiValidator have some similar
-algorythm flow. I don't think template method is needed though
+algorithm flow. I don't think template method is needed though
 
 OK, now to render some views. Done.
 
