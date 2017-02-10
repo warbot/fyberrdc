@@ -36,3 +36,4 @@ I went with real pagination
 
 Also added bootstrap so it looks a bit more pleasent
 b1
+b2
